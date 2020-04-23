@@ -13,7 +13,7 @@ let licenseKey = "AUZOTAjxFoljEUPsci9NGuRA5C5zF7MWqzqmT2tPvRpwXEmzFU/fPp5Mh5Hhdn
 
 
 ScanditSDK.configure(  licenseKey: "AUZOTAjxFoljEUPsci9NGuRA5C5zF7MWqzqmT2tPvRpwXEmzFU/fPp5Mh5HhdnxQoR55LpVKB/KdXL6v1G8zBLAQ0uW0fC40aBKlyx5jkL0yUnBLcRN7LDNEM8mIdyqiSnKEBK1Uyxp5HBlPYgcylbkUWTUIPHnKxT0pj935HFhiOGB9oUQDLEVkOdljHPqklk4qikOLwxc5kf8IkS1+kv1trNpuG5UOSgYhLyb8Rust6LxO/uGP+TJqQhTVgy+v1HFuduhz0rsartrKsrpBfgzJADuVhp6roeiE82Y6V3iC8ArrqbbruDX7smJuFJr/zSBCLh8qkYrr29PUs9lPjtc2N+goR7qbRWQNuX+JkebMgTEU59SLwuSGgifNNt4+on89YGdFSIC75JZkWcT2EJB5muiKg/Qb8+w8btPaa5bqv0Cm9AJdxhMNROrSwdw6XUDN6TxR/5bmT0gljI7A9+1UzsNSdiTobIOoE0uNI1RZFbJ1EFLSc83jH8q6JRY8RFWNuAyk6KuBNPhKVHuOmJXBiKlAxg806aCsfgQ8cvxMh2RUG0fOguTqiDoybWy79ymLzHidzH/EeyubBtD/Z9YcmP5zOwWzUcspp8z9sEF91kiWYHKj/sWuqNsJf4JklFlltrO5nI6xYF+jjs5ZxBbB35YLmD5dIzl/NapSxpzGjQgvIsIQqX75/WnWez5MHHeHI1YAienDb9TIzlEBKVD4TvcDPP9uChc1V8htTsfl+vETNB+2pd6FIcrC45+70XnRfz3X6L1TeaaGFYoljresrHaRoTZmCZHuMjmicEgCKYQUgOwOiMVH2uHHMjCCXFBd",
-  {engineLocation: "../node_modules/scandit-sdk/build"}
+  {engineLocation: "../node_modules/scandit-sdk/build/"},
 );
 /* {engineLocation: "../node_modules/scandit-sdk/build"} */
 
