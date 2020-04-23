@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import NavClass from './navbar';
-import { Progress } from 'reactstrap';
 import RequestButton from './requestButton';
+import {firebase}  from './index';
+import { Card, Progress, CardText, CardBody,
+  CardTitle, CardSubtitle, Button } from 'reactstrap';
 
 
 var doot;
@@ -11,14 +13,24 @@ class UserPage extends Component{
     super(props);
     this.state={
       requestDate:'',
-
+      myRequests:[],
       requestDropdownValue:'',
     }
     doot=this;
   }
 
-componentDidMount(){
-
+componentWillMount(){
+  if(this.props.isUserLoggedIn){
+  const myRequestsRef = firebase.database().ref('users/'+ this.props.frbsUid+'/requestsHistory/').limitToLast(3)
+     myRequestsRef.on('value', function(snapshot) {
+       doot.setState({
+         myRequests:snapshot.val(), //this needs Object.values() to be accessed
+       })
+       return snapshot.val()
+     })
+   }else{
+     return null;
+   }
 };
 
 render(){
@@ -48,6 +60,7 @@ render(){
                 requestSubmit={this.props.requestSubmit}
                 getPaddedDate={this.props.getPaddedDate}
                 today={doot.props.today}
+                handleRequestWindow={this.props.handleRequestWindow}
                 />
              <br/>
              <br/>
@@ -59,11 +72,35 @@ render(){
             <br/>
            <Progress value={this.props.accountBalance} max={this.props.maxBalance} />
          </div>
-
+         <ul>
+           {this.state.myRequests.map(function(request, index) {
+             return <MyContentItem request={request} key={index} />
+           })}
+         </ul>
     </div>
 
   );
+
 }
 }
+const MyContentItem = ({ request }) => (
+
+      <Card>
+        <CardBody>
+          <CardTitle>
+            {request.name}
+          </CardTitle>
+          <CardText>
+          you requested
+           {" " +request.requestHours+" "}
+           hours(s) for {request.requestDate}
+
+
+
+          </CardText>
+        </CardBody>
+      </Card>
+    )
+
 
 export default UserPage;

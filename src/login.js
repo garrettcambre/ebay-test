@@ -75,12 +75,14 @@ class Login extends Component {
       usersNumber:'',
       today:'',
       usersAddress:'',
+      requestWindowStart:'',
+      requestWindowEnd:'',
       //contractor page
       recentRequests:[],
 
     };
     this.handleSubmit = this.handleSubmit.bind(this);//these can all be set to doot in a cleanup day(i think, some scope may be slightly different),
-    this.handleEmailChange = this.handleEmailChange.bind(this);// see lines 109-112 for an example
+    this.handleEmailChange = this.handleEmailChange.bind(this);// see handleEmailChange for an example
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.toggle = this.toggle.bind(this);
     this.incrementMaxBalance = this.incrementMaxBalance.bind(this);
@@ -136,6 +138,7 @@ class Login extends Component {
                      })
                      return snapshot.val()
                    })
+
                    addressRef = firebase.database().ref('users/' + frbsUid + '/address')//used for requests
                     addressRef.on('value', function(snapshot) {
                       doot.setState({
@@ -143,6 +146,7 @@ class Login extends Component {
                       })
                       return snapshot.val()
                     })
+
                     numberRef = firebase.database().ref('users/' + frbsUid + '/number')//used for requests
                      numberRef.on('value', function(snapshot) {
                        doot.setState({
@@ -150,7 +154,6 @@ class Login extends Component {
                        })
                        return snapshot.val()
                      })
-
 
                    nameRef = firebase.database().ref('users/' + frbsUid + '/name')
                     nameRef.on('value', function(snapshot) {
@@ -182,19 +185,21 @@ class Login extends Component {
                     })
 
                     if (doot.state.isAdminLoggedIn || doot.state.isContractorLoggedIn){
-                      doot.setState({
+                     doot.setState({
                         loginModal: !doot.state.loginModal,
                       })
+                      console.log("contractor is logged in")
                     }else{
                       doot.setState({
                         loginModal: !doot.state.loginModal,
                         isUserLoggedIn: true,
                       })
+                      console.log("user is logged in")
                     }
                 } else {
                   console.log('user isnt signed in from handlesubmit')
                 }
-              });
+            });//use some sort of async to figure out howto make this if statement after the contractorRef method
          }).catch(function(error) {
         //  var errorCode = error.code;  this is automatically part of firebase finction, I have not used it yet
         //  var errorMessage = error.message;
@@ -406,6 +411,12 @@ class Login extends Component {
             requestUid: requestUid,
             requestDate:doot.state.requestDate,
             requestHours:doot.state.requestDropdownValue,
+            requestWindowStart:'',
+            requestWindowEnd:'',
+            isRequested: true,
+            isDispatched: false,
+            isArrived:false,
+            isCompleted:false
           };
 
           requestData = {
@@ -413,6 +424,12 @@ class Login extends Component {
             requestSubmittedAt: now,
             requestDate:doot.state.requestDate,
             requestHours:doot.state.requestDropdownValue,
+            requestWindowStart:'',
+            requestWindowEnd:'',
+            isRequested: true,
+            isDispatched: false,
+            isArrived:false,
+            isCompleted:false
           };
 
           updateRequests = {};
@@ -439,26 +456,34 @@ class Login extends Component {
 
     handleRequestDropdown(){ //use a closure as a better syntax, a function that returns a function
       return(e)=>{
-        this.setState({
+        doot.setState({
           requestDropdownValue: e.target.value
         })
         }
 
     };
+    handleRequestWindow(){ //use a closure as a better syntax, a function that returns a function
+      return(e)=>{
+        doot.setState({
+          requestWindowStart: e.target.value[0],
+          requestWindowEnd: e.target.value[1]
+        })
+        }
 
+    };
 
   componentWillMount(){
       getPaddedDate()
 
 //for requestscroll contracrtors
-  const recentRequestsRef = firebase.database().ref('requests/').limitToLast(3)
-     recentRequestsRef.on('value', function(snapshot) {
-       doot.setState({
-         recentRequests: Object.values(snapshot.val())
-       })
-       return snapshot.val()
-     })
 
+const recentRequestsRef = firebase.database().ref('requests/').limitToLast(3)
+   recentRequestsRef.on('value', function(snapshot) {
+     doot.setState({
+       recentRequests: Object.values(snapshot.val())
+     })
+     return snapshot.val()
+   })
 
 
 }
@@ -567,6 +592,7 @@ componentDidMount(){
               accountBalance={this.state.accountBalance}
               usersName={this.state.usersName}
               maxBalance={this.state.maxBalance}
+              frbsUid={frbsUid}
               incrementMaxBalance={this.incrementMaxBalance}
               decrementMaxBalance={this.decrementMaxBalance}
               requestModal={this.state.requestModal}
@@ -576,7 +602,8 @@ componentDidMount(){
               requestDateChange={this.requestDateChange}
               today={this.state.today}
               handleRequestDropdown={this.handleRequestDropdown}
-
+              handleRequestWindow={this.handleRequestWindow}
+              isUserLoggedIn={this.state.isUserLoggedIn}
               />
         </div>
       );

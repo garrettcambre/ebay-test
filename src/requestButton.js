@@ -3,7 +3,6 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 
 
-
 class RequestButton extends Component{
   constructor(props){
     super(props)
@@ -18,6 +17,7 @@ class RequestButton extends Component{
       dropdownOpen: !prevState.dropdownOpen
     }));
   }
+
 
 
 render(){
@@ -48,10 +48,8 @@ render(){
 
              />
 
-
-
-
           </form>
+
 
         </ModalBody>
         <ModalFooter>

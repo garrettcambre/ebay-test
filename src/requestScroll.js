@@ -19,50 +19,59 @@ componentWillMount( ){
 
 
 }
-render(){
-console.log(this.props.recentRequests)
 
-const loop=function(){
-  let i
-  for (i=0; i<doot.props.recentRequests.length; i++){
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  render() {
+    return (
+      <ul>
+        {this.props.recentRequests.map(function(request, index) {
+          return <ContentItem request={request} key={index} />
+        })}
+      </ul>
+    );
+  }
 }
 
-const test = function(index) {
-    <div>
+const ContentItem = ({ request }) => (
+
       <Card>
         <CardBody>
-          <CardTitle>{doot.props.recentRequests[index].name} requested</CardTitle>
-          <CardText>{doot.props.recentRequests[index].requestHours} Hour(s)
-                     on {doot.props.recentRequests[index].requestDate}
-                     at {doot.props.recentRequests[index].address}
+          <CardTitle>
+            {request.name}
+          </CardTitle>
+          <CardText>
+          requested
+           {" " +request.requestHours+" "}
+           hours(s) on {request.requestDate}
+        
+           <br/>
+           Email:{" " +request.email}
+
           </CardText>
-          <Button>Button</Button>
-          <Button>Button</Button>
-          <Button>Button</Button>
         </CardBody>
       </Card>
-    </div>
-    console.log(index)
-    console.log(doot.props.recentRequests[index].name)
-    }
-  }
+
+)
 
 
 
 
 
-
-
-
-
-  return(
-    <div>
-      {test}
-    </div>
-
-  );
-}
-}
 
 export default RequestScroll;

@@ -102,3 +102,275 @@
       <li>{doot.state.recentRequests[0].email}</li>
     </ul>
   </div>;
+
+
+
+
+
+
+
+
+
+
+
+
+
+  render(){
+  console.log(this.props.recentRequests)
+
+  const loop=function(){
+    let i
+    for (i=0; i<doot.props.recentRequests.length; i++){
+
+  }
+
+  const test = function(index) {
+      <div>
+        <Card>
+          <CardBody>
+            <CardTitle>{doot.props.recentRequests[index].name} requested</CardTitle>
+            <CardText>{doot.props.recentRequests[index].requestHours} Hour(s)
+                       on {doot.props.recentRequests[index].requestDate}
+                       at {doot.props.recentRequests[index].address}
+            </CardText>
+            <Button>Button</Button>
+            <Button>Button</Button>
+            <Button>Button</Button>
+          </CardBody>
+        </Card>
+      </div>
+      console.log(index)
+      console.log(doot.props.recentRequests[index].name)
+      }
+    }
+
+
+
+
+
+
+
+
+
+
+
+//this goes in request button to implement timeslpts
+<h2> and please pick a time slot </h2>
+<form>
+  <select onChange={this.props.handleRequestWindow()}>
+    <option value={[8, 12]}> 8am-12pm</option>
+    <option value={nine}> 9am-1pm</option>
+    <option value={ten}> 10am-2pm</option>
+    <option value={eleven}> 11am-3pm</option>
+    <option value={[12, 4]}> 12pm-4pm</option>
+    <option value={one}> 1pm-5pm</option>
+    <option value={two}> 2pm-6pm</option>
+
+  </select>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //this in component will ount login
+
+
+
+    const recentRequestsRef = firebase.database().ref('requests/').limitToLast(3)
+       recentRequestsRef.on('value', function(snapshot) {
+         doot.setState({
+           recentRequests: Object.values(snapshot.val())
+         })
+         return snapshot.val()
+       })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       // <script src="https://cdn.jsdelivr.net/npm/dynamsoft-javascript-barcode@7.2.2-v2/dist/dbr.js" data-productKeys="LICENSE-KEY"></script>
+       // <script>
+       //     let barcodeScanner = null;
+       //     Dynamsoft.BarcodeScanner.createInstance({
+       //         onFrameRead: results => {console.log(results);},
+       //         onUnduplicatedRead: (txt, result) => {alert(txt);}
+       //     }).then(scanner => {
+       //         barcodeScanner = scanner;
+       //         barcodeScanner.show();
+       //     });
+       // </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     /* let licenseKey = "AUZOTAjxFoljEUPsci9NGuRA5C5zF7MWqzqmT2tPvRpwXEmzFU/fPp5Mh5HhdnxQoR55LpVKB/KdXL6v1G8zBLAQ0uW0fC40aBKlyx5jkL0yUnBLcRN7LDNEM8mIdyqiSnKEBK1Uyxp5HBlPYgcylbkUWTUIPHnKxT0pj935HFhiOGB9oUQDLEVkOdljHPqklk4qikOLwxc5kf8IkS1+kv1trNpuG5UOSgYhLyb8Rust6LxO/uGP+TJqQhTVgy+v1HFuduhz0rsartrKsrpBfgzJADuVhp6roeiE82Y6V3iC8ArrqbbruDX7smJuFJr/zSBCLh8qkYrr29PUs9lPjtc2N+goR7qbRWQNuX+JkebMgTEU59SLwuSGgifNNt4+on89YGdFSIC75JZkWcT2EJB5muiKg/Qb8+w8btPaa5bqv0Cm9AJdxhMNROrSwdw6XUDN6TxR/5bmT0gljI7A9+1UzsNSdiTobIOoE0uNI1RZFbJ1EFLSc83jH8q6JRY8RFWNuAyk6KuBNPhKVHuOmJXBiKlAxg806aCsfgQ8cvxMh2RUG0fOguTqiDoybWy79ymLzHidzH/EeyubBtD/Z9YcmP5zOwWzUcspp8z9sEF91kiWYHKj/sWuqNsJf4JklFlltrO5nI6xYF+jjs5ZxBbB35YLmD5dIzl/NapSxpzGjQgvIsIQqX75/WnWez5MHHeHI1YAienDb9TIzlEBKVD4TvcDPP9uChc1V8htTsfl+vETNB+2pd6FIcrC45+70XnRfz3X6L1TeaaGFYoljresrHaRoTZmCZHuMjmicEgCKYQUgOwOiMVH2uHHMjCCXFBd"
+
+     var scanditConfig = (
+       licenseKey: "AUZOTAjxFoljEUPsci9NGuRA5C5zF7MWqzqmT2tPvRpwXEmzFU/fPp5Mh5HhdnxQoR55LpVKB/KdXL6v1G8zBLAQ0uW0fC40aBKlyx5jkL0yUnBLcRN7LDNEM8mIdyqiSnKEBK1Uyxp5HBlPYgcylbkUWTUIPHnKxT0pj935HFhiOGB9oUQDLEVkOdljHPqklk4qikOLwxc5kf8IkS1+kv1trNpuG5UOSgYhLyb8Rust6LxO/uGP+TJqQhTVgy+v1HFuduhz0rsartrKsrpBfgzJADuVhp6roeiE82Y6V3iC8ArrqbbruDX7smJuFJr/zSBCLh8qkYrr29PUs9lPjtc2N+goR7qbRWQNuX+JkebMgTEU59SLwuSGgifNNt4+on89YGdFSIC75JZkWcT2EJB5muiKg/Qb8+w8btPaa5bqv0Cm9AJdxhMNROrSwdw6XUDN6TxR/5bmT0gljI7A9+1UzsNSdiTobIOoE0uNI1RZFbJ1EFLSc83jH8q6JRY8RFWNuAyk6KuBNPhKVHuOmJXBiKlAxg806aCsfgQ8cvxMh2RUG0fOguTqiDoybWy79ymLzHidzH/EeyubBtD/Z9YcmP5zOwWzUcspp8z9sEF91kiWYHKj/sWuqNsJf4JklFlltrO5nI6xYF+jjs5ZxBbB35YLmD5dIzl/NapSxpzGjQgvIsIQqX75/WnWez5MHHeHI1YAienDb9TIzlEBKVD4TvcDPP9uChc1V8htTsfl+vETNB+2pd6FIcrC45+70XnRfz3X6L1TeaaGFYoljresrHaRoTZmCZHuMjmicEgCKYQUgOwOiMVH2uHHMjCCXFBd",
+       {engineLocation: "./node_modules/scandit-sdk/build"}
+     );
+
+       ScanditSDK.configure(scanditConfig);
+
+
+
+     */
+
+
+
+       <ScanditBarcodeScanner
+         // Library licensing & configuration options (see https://docs.scandit.com/stable/web/globals.html#configure)
+         licenseKey={this.licenseKey}
+         engineLocation="https://cdn.jsdelivr.net/npm/scandit-sdk@4.x/build" // could also be a local folder, e.g. "build"
+
+         // Picker events
+         onReady={() => this.setState({ scannerReady: true })}
+         onScan={console.log}
+         onScanError={console.log}
+
+         // Picker options
+         scanSettings={this.getScanSettings()}
+       />
+
+
+       <ScanditBarcodeScanner
+         licenseKey={this.licenseKey}
+         engineLocation="https://cdn.jsdelivr.net/npm/scandit-sdk@4.x/build"
+
+         onReady={() => this.setState({ scannerReady: true })}
+         onScan={console.log}
+         onScanError={console.log}
+         onSubmitFrame={console.log}
+         onProcessFrame={console.log}
+
+         scanSettings={this.getScanSettings()}
+         paused={this.state.paused}
+         /*️
+           ⚠️ Make sure to keep accessCamera and paused synchronized in a sensible way, as resuming scanning accesses
+           the camera, so your state might become outdated.
+           For example, set accessCamera to true whenever scanning is resumed.
+         */
+         accessCamera={this.state.accessCamera}
+         camera={this.state.activeCamera}
+         cameraSettings={this.state.cameraSettings}
+         enableCameraSwitcher={this.state.enableCameraSwitcher}
+         enablePinchToZoom={this.state.enablePinchToZoom}
+         enableTapToFocus={this.state.enableTapToFocus}
+         enableTorchToggle={this.state.enableTorchToggle}
+         guiStyle={this.state.guiStyle}
+         playSoundOnScan={this.state.playSoundOnScan}
+         targetScanningFPS={this.state.targetScanningFPS}
+         vibrateOnScan={this.state.vibrateOnScan}
+         videoFit={this.state.videoFit}
+         visible={this.state.visible}
+         singleImageMode={this.state.singleImageMode} // only set on component creation, can not be changed afterwards
+         /*
+           Reusing an already initialized scanner makes subsequent initilizations much faster. The process has 2 steps:
+           1. Store an existing scanner after it's initialized
+             (onScannerInitialized will be called with a scanner usable in the next step)
+           2. Pass the stored scanner to a newly created scanner component to reuse that scanner
+             (Passing undefined as the scanner has no negative effects and can be done, as seen below)
+         */
+         onScannerInitialized={scanner =>
+           this.setState({ existingScanner: scanner })
+         }
+         scanner={this.state.existingScanner}
+       />
+
+
+
+
+
+
+
+
+
+
+
+
+       <ScanditBarcodeScanner
+         licenseKey={this.licenseKey}
+         engineLocation="./node_modules/scandit-sdk/build"
+
+         onReady={() => this.setState({ scannerReady: true })}
+         onScan={console.log}
+         onScanError={console.log}
+         onSubmitFrame={console.log}
+         onProcessFrame={console.log}
+
+         scanSettings={this.getScanSettings()}
+         paused={this.state.paused}
+         /*️
+           ⚠️ Make sure to keep accessCamera and paused synchronized in a sensible way, as resuming scanning accesses
+           the camera, so your state might become outdated.
+           For example, set accessCamera to true whenever scanning is resumed.
+         */
+         accessCamera={this.state.accessCamera}
+         camera={this.state.activeCamera}
+         cameraSettings={this.state.cameraSettings}
+         enableCameraSwitcher={this.state.enableCameraSwitcher}
+         enablePinchToZoom={this.state.enablePinchToZoom}
+         enableTapToFocus={this.state.enableTapToFocus}
+         enableTorchToggle={this.state.enableTorchToggle}
+         guiStyle={this.state.guiStyle}
+         playSoundOnScan={this.state.playSoundOnScan}
+         targetScanningFPS={this.state.targetScanningFPS}
+         vibrateOnScan={this.state.vibrateOnScan}
+         videoFit={this.state.videoFit}
+         visible={this.state.visible}
+         singleImageMode={this.state.singleImageMode} // only set on component creation, can not be changed afterwards
+         /*
+           Reusing an already initialized scanner makes subsequent initilizations much faster. The process has 2 steps:
+           1. Store an existing scanner after it's initialized
+             (onScannerInitialized will be called with a scanner usable in the next step)
+           2. Pass the stored scanner to a newly created scanner component to reuse that scanner
+             (Passing undefined as the scanner has no negative effects and can be done, as seen below)
+         */
+         onScannerInitialized={scanner =>
+           this.setState({ existingScanner: scanner })
+         }
+         scanner={this.state.existingScanner}
+       />
